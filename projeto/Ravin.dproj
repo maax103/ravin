@@ -147,6 +147,55 @@
             <Form>frmComandas</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\codigo\util\UResourceUtils.pas"/>
+        <DCCReference Include="..\codigo\formularios\UfrmLogin.pas">
+            <Form>frmLogin</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\codigo\frames\UfrmBotaoSubmit.pas">
+            <Form>Frame1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\codigo\modelo\Uusuario.pas"/>
+        <DCCReference Include="..\codigo\dao\UusuarioDao.pas"/>
+        <DCCReference Include="..\codigo\frames\UfrmBotaoSecundario.pas">
+            <Form>frmBotaoSecundario</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\codigo\frames\UfrmBotaoPrimario.pas">
+            <Form>frmBotaoPrimario</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\codigo\formularios\UfrmRegistrar.pas">
+            <Form>frmRegistrar</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\codigo\dao\UpessoaDao.pas"/>
+        <DCCReference Include="..\codigo\validadores\UvalidaUsuario.pas"/>
+        <DCCReference Include="..\codigo\util\UiniUtils.pas"/>
+        <DCCReference Include="..\codigo\util\UFormUtils.pas"/>
+        <DCCReference Include="..\codigo\modelo\UPessoa.pas"/>
+        <DCCReference Include="..\codigo\frames\UfrmBotaoCancelar.pas">
+            <Form>frmBotaoCancelar</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\codigo\frames\UfrmBotaoExcluir.pas">
+            <Form>frmBotaoExcluir</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\codigo\formularios\UfrmCadastroCliente.pas">
+            <Form>frmCadastroCliente</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\codigo\formularios\UfrmListaClientes.pas">
+            <Form>frmListaClientes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -168,6 +217,8 @@
                     <Source Name="MainSource">Ravin.dpr</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k270.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp270.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>

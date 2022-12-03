@@ -13,6 +13,7 @@ object frmPainelGestao: TfrmPainelGestao
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   DesignSize = (
     640
     480)
@@ -1254,12 +1255,12 @@ object frmPainelGestao: TfrmPainelGestao
       AlignWithMargins = True
       Left = 52
       Top = 119
-      Width = 65
+      Width = 73
       Height = 25
       Alignment = taCenter
       Anchors = [akLeft, akTop, akRight]
       BiDiMode = bdLeftToRight
-      Caption = 'Marcio'
+      Caption = 'Usu'#225'rio'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -21
@@ -2339,7 +2340,8 @@ object frmPainelGestao: TfrmPainelGestao
       ExplicitTop = 252
       inherited pnlFundo: TPanel
         inherited lblTitulo: TLabel
-          Caption = 'Pessoas'
+          Caption = 'Clientes'
+          OnClick = frmMenuItemPessoaslblTituloClick
         end
       end
     end
@@ -5716,7 +5718,7 @@ object frmPainelGestao: TfrmPainelGestao
             000049454E44AE426082}
         end
         inherited lblTitulo: TLabel
-          Caption = 'Sair'
+          Caption = 'Deslogar'
           OnClick = frmMenuItemSairlblTituloClick
         end
       end

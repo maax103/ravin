@@ -1,0 +1,29 @@
+object Frame1: TFrame1
+  Left = 0
+  Top = 0
+  Width = 296
+  Height = 70
+  Color = 10011497
+  ParentBackground = False
+  ParentColor = False
+  TabOrder = 0
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 296
+    Height = 70
+    Align = alClient
+    Caption = 'Autenticar'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'Roboto'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    ExplicitLeft = 56
+    ExplicitTop = 16
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+  end
+end

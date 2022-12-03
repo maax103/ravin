@@ -9,6 +9,7 @@ uses
   System.SysUtils,
   System.Variants,
   System.Classes,
+  System.DateUtils,
 
   Vcl.Graphics,
   Vcl.Controls,
@@ -31,8 +32,9 @@ type
   private
     { Private declarations }
     Inicialized: Boolean;
+    procedure ShowPainelGestao();
+    procedure ShowLogin();
     procedure InicializeApplication();
-    procedure SetMainForm(NewMainForm: TForm);
   public
     { Public declarations }
   end;
@@ -44,7 +46,7 @@ implementation
 
 {$R *.dfm}
 
-uses UfrmPainelGestao;
+uses UfrmPainelGestao, UfrmLogin, UiniUtils, UFormUtils;
 
 procedure TfrmSplash.FormCreate(Sender: TObject);
 begin
@@ -59,16 +61,26 @@ begin
 end;
 
 procedure TfrmSplash.InicializeApplication;
+var
+  LLogado : String;
+  LDateString : String;
+  LUltimo_login : TDateTime;
+  LDias_logado : Double;
+const
+  DURACAO_LOGIN_DIAS = 5;
 begin
-  if not Assigned(frmPainelGestao) then
+  LLogado := TIniUtils.lerPropriedade(TSECAO.INFORMACOES_GERAIS, TPROPRIEDADE.LOGADO);
+  LDateString := TIniUtils.lerPropriedade(TSECAO.INFORMACOES_GERAIS, TPROPRIEDADE.ULTIMO_LOGIN);
+  LUltimo_login := StrToDateTime(LDateString);
+  LDias_logado := DaysBetween(Now, LUltimo_login);
+
+  if (LLogado = TIniUtils.VALOR_VERDADEIRO) and (LDias_logado < DURACAO_LOGIN_DIAS) then
   begin
-    Application.CreateForm(TfrmPainelGestao, frmPainelGestao);
+    ShowPainelGestao;
+  end
+  else begin
+    ShowLogin;
   end;
-
-  SetMainForm(frmPainelGestao);
-  frmPainelGestao.Show();
-
-  Close;
 end;
 
 procedure TfrmSplash.tmrSplashTimer(Sender: TObject);
@@ -81,12 +93,29 @@ begin
   end;
 end;
 
-procedure TfrmSplash.SetMainForm(NewMainForm: TForm);
-var
-  tmpMain: ^TCustomForm;
+procedure TfrmSplash.ShowLogin;
 begin
-  tmpMain := @Application.Mainform;
-  tmpMain^ := NewMainForm;
+  if not Assigned(frmLogin) then
+  begin
+    Application.CreateForm(TfrmLogin, frmLogin);
+  end;
+
+  TformUtils.SetMainForm(frmLogin);
+  frmLogin.Show();
+  Close;
+end;
+
+procedure TfrmSplash.ShowPainelGestao;
+begin
+  if not Assigned(frmPainelGestao) then
+  begin
+    Application.CreateForm(TfrmPainelGestao, frmPainelGestao);
+  end;
+
+  TformUtils.SetMainForm(frmPainelGestao);
+  frmPainelGestao.Show;
+
+  Close;
 end;
 
 end.

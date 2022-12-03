@@ -43,6 +43,8 @@ type
     procedure frmMenuItemProdutoslblTituloClick(Sender: TObject);
     procedure frmMenuItemMesaslblTituloClick(Sender: TObject);
     procedure frmMenuItemComandaslblTituloClick(Sender: TObject);
+    procedure frmMenuItemPessoaslblTituloClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,7 +61,21 @@ implementation
 uses
   UfrmSobre,
   UfrmProdutos,
-  UfrmMesas, UfrmComandas;
+  UfrmMesas, UfrmComandas, UiniUtils, UfrmLogin, UFormUtils,
+  UfrmCadastroCliente, UfrmListaClientes;
+
+procedure TfrmPainelGestao.FormShow(Sender: TObject);
+var
+  LnomeUsuario : String;
+begin
+  try
+    LnomeUsuario := TIniUtils.lerPropriedade(TSECAO.INFORMACOES_GERAIS, TPROPRIEDADE.NOME_USUARIO);
+  except on E: Exception do
+    LnomeUsuario := 'Usuário não encontrado';
+  end;
+
+  lblNomeUsuario.Caption := LnomeUsuario;
+end;
 
 procedure TfrmPainelGestao.FrameMenuItemMesasLabelTitleClick(Sender: TObject);
 begin
@@ -88,6 +104,15 @@ begin
   frmMesas.show();
 end;
 
+procedure TfrmPainelGestao.frmMenuItemPessoaslblTituloClick(Sender: TObject);
+begin
+  if not Assigned(frmListaClientes) then
+  begin
+    Application.CreateForm(TfrmListaClientes, frmListaClientes);
+  end;
+  frmListaClientes.Show;
+end;
+
 procedure TfrmPainelGestao.frmMenuItemProdutoslblTituloClick(Sender: TObject);
 begin
   if (not Assigned(frmProdutos)) then
@@ -99,7 +124,16 @@ end;
 
 procedure TfrmPainelGestao.frmMenuItemSairlblTituloClick(Sender: TObject);
 begin
-  Application.Terminate();
+  TIniUtils.gravarPropriedade(TSECAO.INFORMACOES_GERAIS, TPROPRIEDADE.LOGADO,
+     TIniUtils.VALOR_FALSO);
+  if not Assigned(frmLogin) then
+  begin
+    Application.CreateForm(TfrmLogin, frmLogin);
+  end;
+
+  TformUtils.SetMainForm(frmLogin);
+  frmLogin.Show();
+  Close;
 end;
 
 procedure TfrmPainelGestao.frmMenuItemSobrelblTituloClick(Sender: TObject);
